@@ -1,10 +1,11 @@
 pipeline {
-    agent any 
-    stages {
-        stage('Stage 1') {
-            steps {
-                echo 'Is another message, not hello world!' 
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        git 'https://github.com/bcalvessilva/firstnewmanexample'
+      }
     }
+
+  }
 }
