@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "63a1ed4a-50c7-41b1-91f5-41dc17205c05",
+		"name": "ExemploPostman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1464143"
+	},
+	"item": [
+		{
+			"name": "POSTMAN_ECHO_123_TEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Body contains headers\"] = responseBody.has(\"headers\");",
+							"tests[\"Body contains args\"] = responseBody.has(\"args\");",
+							"tests[\"Body contains url\"] = responseBody.has(\"url\");",
+							"",
+							"var responseJSON;",
+							"",
+							"try { responseJSON = JSON.parse(responseBody); }",
+							"catch (e) { }",
+							"",
+							"",
+							"tests[\"Args key contains argument passed as url parameter\"] = 'test' in responseJSON.args"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{baseUrl}}/get?test=123",
+					"protocol": "https",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "test",
+							"value": "123"
+						}
+					]
+				},
+				"description": "The HTTP `GET` request method is meant to retrieve data from a server. The data\nis identified by a unique URI (Uniform Resource Identifier). \n\nA `GET` request can pass parameters to the server using \"Query String \nParameters\". For example, in the following request,\n\n> http://example.com/hi/there?hand=wave\n\nThe parameter \"hand\" has the value \"wave\".\n\nThis endpoint echoes the HTTP headers, request parameters and the complete\nURI requested."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
