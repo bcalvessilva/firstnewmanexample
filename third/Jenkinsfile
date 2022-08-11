@@ -1,0 +1,11 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh 'newman run AULA_09.postman_collection.json run -e AULA_09.postman_environment.json -d AULA_09-users.json'
+      }
+    }
+
+  }
+}
