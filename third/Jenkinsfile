@@ -1,19 +1,18 @@
 pipeline {
   agent any
+ 
+  tools {nodejs "node_18.7.0"}
+ 
   stages {
-    stage('Build') {
+    stage('Download Git Repository') {
       steps {
-         steps {
-              checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
-                extensions: [
-                    [$class: 'SparseCheckoutPaths', 
-                    sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'/jenkins/script']]]
-                    ],
-                userRemoteConfigs: [[url: 'https://github.com/bcalvessilva/firstnewmanexample']]])
-              sh "ls -ltr"
-          }
-      }      
+        git branch: 'main', url: 'https://github.com/bcalvessilva/firstnewmanexample.git'
+      }
+    }
+    stage('Run') {
+      steps {
+        sh 'newman run AULA_09.postman_collection.json -e AULA_09.postman_environment.json -d AULA_09-users.json'
+      }
     }
   }
 }
